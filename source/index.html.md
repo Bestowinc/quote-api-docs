@@ -146,7 +146,7 @@ The call will receive a JSON object with a prices for a 10-year product (BT1003)
 | BT1003  | 10 year          |
 | BT2003  | 20 year          |
 
-Inside the Product offering, you will recieve different prices for different amounts of insurance the customer can buy. In the example to the right, the values are
+Inside the Product offering, you will receive different prices for different amounts of insurance the customer can buy. In the example to the right, the values are
 
 | Product | Length of Policy | Face Value of Insurance | Price per Month |
 | ------- | ---------------- | ----------------------- | --------------- |
