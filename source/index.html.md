@@ -21,7 +21,7 @@ Welcome to the Bestow Quote API. Users of the API can get price quotes for Besto
 ```shell
 
 curl -X POST \
-  https://api.hellobestow.com/v2/quote \
+  https://api.bestow.com/v2/quote \
   -H 'Authorization: 82zZIHeBqUlBtICMX5li' \
   -H 'Content-Type: application/json' \
 ```
@@ -51,7 +51,7 @@ When calculating policy prices, we take many attributes into consideration, such
 ```shell
 
 curl -X POST \
-  https://api.hellobestow.com/v2/quote \
+  https://api.bestow.com/v2/quote \
   -H 'Authorization: 82zZIHeBqUlBtICMX5li' \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
@@ -135,7 +135,7 @@ curl -X POST \
 
 ### HTTP Request
 
-`POST https://api.hellobestow.com/v2/quote`
+`POST https://api.bestow.com/v2/quote`
 
 ### Query Parameters
 
@@ -171,11 +171,8 @@ Inside the Product offering, you will recieve different prices for different amo
 
 > To enroll from a quote, use:
 
-> `GET https://enrollment.hellobestow.com/get-started`
+> `GET https://enrollment.bestow.com/get-started`
 
-> Alternatively, `/account/create-account` can be used but is less preferred.
-
-> `GET https://enrollment.hellobestow.com/account/create-account`
 
 When you send customers to enroll in life insurance with Bestow, direct them to the following URL, and you can pass in query params that will link your quote to the enrollment application. You can additionally pass in other query param so that the enrollment application is pre-populated with that data.
 
@@ -188,13 +185,13 @@ When you send customers to enroll in life insurance with Bestow, direct them to 
 
 ### HTTP Request
 
-`GET https://enrollment.hellobestow.com/get-started`
+`GET https://enrollment.bestow.com/get-started`
 
 ### Query Params
 
 > Example Using Query Parameters:
 
-> `GET https://enrollment.hellobestow.com/get-started?widget=api&quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&date_of_birth=01/01/1980&gender=male&height=72&weight=180&state=TN&product=BT2002&coverage=700000&utm_source=Source&utm_name=Name&utm_medium=Medium&utm_content=Content&utm_term=Term`
+> `GET https://enrollment.bestow.com/get-started?widget=api&quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&date_of_birth=01/01/1980&gender=male&height=72&weight=180&state=TN&product=BT2002&coverage=700000&utm_source=Source&utm_name=Name&utm_medium=Medium&utm_content=Content&utm_term=Term`
 
 | Parameter       | Required | Description                                                                                                                  |
 | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
