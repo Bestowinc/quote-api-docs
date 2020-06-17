@@ -199,7 +199,7 @@ When you send customers to enroll in life insurance with Bestow, direct them to 
 
 You can provide `utm_` parameters for proper affiliate tracking. All parameters below are supported.
 
-| Paremeter   |
+| Parameter   |
 | ----------- |
 | utm_source  |
 | utm_name    |
