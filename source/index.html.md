@@ -21,7 +21,7 @@ Welcome to the Bestow Quote API. Users of the API can get price quotes for Besto
 ```shell
 
 curl -X POST \
-  https://api.bestow.com/v2/quote \
+  https://api.hellobestow.com/v2/quote \
   -H 'Authorization: 82zZIHeBqUlBtICMX5li' \
   -H 'Content-Type: application/json' \
 ```
@@ -51,7 +51,7 @@ When calculating policy prices, we take many attributes into consideration, such
 ```shell
 
 curl -X POST \
-  https://api.bestow.com/v2/quote \
+  https://api.hellobestow.com/v2/quote \
   -H 'Authorization: 82zZIHeBqUlBtICMX5li' \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
@@ -123,7 +123,7 @@ curl -X POST \
 
 ### HTTP Request
 
-`POST https://api.bestow.com/v2/quote`
+`POST https://api.hellobestow.com/v2/quote`
 
 ### Query Parameters
 
