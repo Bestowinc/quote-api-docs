@@ -262,7 +262,7 @@ curl -X POST <span class="se">\</span>
 <p>Make sure to replace <code>82zZIHeBqUlBtICMX5li</code> with your API key.</p>
 </blockquote>
 
-<p>Bestow uses API keys to allow access to the API. You can register a new Bestow API key by sending an <a href="mailto:jake@bestow.co">email to us</a>.</p>
+<p>Bestow uses API keys to allow access to the API. Contact your business development manager to get an API key.</p>
 
 <p>Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
@@ -301,19 +301,7 @@ curl -X POST <span class="se">\</span>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"product_rates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"BT0201"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.33"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.50"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"200000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.67"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"250000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.54"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"300000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.25"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"350000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25.96"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"400000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29.67"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"450000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33.38"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"50000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.63"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"500000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.08"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"BT1002"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"BT1003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.25"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.83"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.38"</span><span class="p">,</span><span class="w">
@@ -335,7 +323,7 @@ curl -X POST <span class="se">\</span>
       </span><span class="s2">"900000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.58"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"950000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53.21"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"BT2002"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"BT2003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.75"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69.16"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.63"</span><span class="p">,</span><span class="w">
@@ -407,7 +395,7 @@ curl -X POST <span class="se">\</span>
 </tr>
 </tbody></table>
 <h3 id='return-values'>Return values</h3>
-<p>The call will receive a JSON object with a prices for a 2-year life insurance project (BT0201), 10-year product (BT1002), and a 20-year product (BT2002)</p>
+<p>The call will receive a JSON object with a prices for a 10-year product (BT1003) and a 20-year product (BT2003)</p>
 
 <table><thead>
 <tr>
@@ -416,20 +404,16 @@ curl -X POST <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>BT0201</td>
-<td>2 year</td>
-</tr>
-<tr>
-<td>BT1002</td>
+<td>BT1003</td>
 <td>10 year</td>
 </tr>
 <tr>
-<td>BT2002</td>
+<td>BT2003</td>
 <td>20 year</td>
 </tr>
 </tbody></table>
 
-<p>Inside the Product offering, you will recieve different prices for different amounts of insurance the customer can buy. In the example to the right, the values are</p>
+<p>Inside the Product offering, you will receive different prices for different amounts of insurance the customer can buy. In the example to the right, the values are</p>
 
 <table><thead>
 <tr>
@@ -440,60 +424,38 @@ curl -X POST <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>BT0201</td>
-<td>2 year</td>
+<td>BT2003</td>
+<td>20 year</td>
 <td>\$100,000</td>
 <td>\$8.33</td>
 </tr>
 <tr>
-<td>BT0201</td>
-<td>2 year</td>
+<td>BT2003</td>
+<td>20 year</td>
 <td>\$150,000</td>
 <td>\$12.50</td>
 </tr>
 <tr>
-<td>BT0201</td>
-<td>2 year</td>
+<td>BT2003</td>
+<td>20 year</td>
 <td>\$200,000</td>
 <td>\$16.67</td>
 </tr>
 </tbody></table>
 <h2 id='using-quote-to-enroll'>Using Quote to Enroll</h2>
 <blockquote>
-<p>To enroll from a quote, use:</p>
+<p>To enroll from a quote, redirect to:</p>
 
-<p><code>GET https://enrollment.hellobestow.com/account</code></p>
+<p><code>https://enrollment.bestow.com/get-started</code></p>
 </blockquote>
 
-<p>When you send customers to enroll in life insurance with Bestow, direct them to the following URL, and you can pass in query params that will link your quote to the enrollment application. You can additionally pass in other query param so that the enrollment application is pre-populated with that data.</p>
-
-<p><strong><em>REQUIRED PARAMETERS</em></strong>:</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>widget</td>
-<td><code>api</code></td>
-<td>This tells Bestow&#39;s enrollment flow what method the user came from</td>
-</tr>
-<tr>
-<td>quoteid</td>
-<td>Unique ID</td>
-<td>This ID is needed to link your customers&#39; quote with the enrollment application</td>
-</tr>
-</tbody></table>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://enrollment.hellobestow.com/account</code></p>
+<p>When you send customers to enroll in life insurance with Bestow, redirect them to <code>enrollment.bestow.com/get-started</code>, and pass in the various query params that will link your quote to the enrollment application.
+You can additionally pass in optional query params so that the enrollment application is pre-populated with that data.</p>
 <h3 id='query-params'>Query Params</h3>
 <blockquote>
-<p>Example Using Query Parameters:</p>
+<p>Example Redirect Using Query Parameters:</p>
 
-<p><code>GET https://enrollment.hellobestow.com/account?widget=api&amp;quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&amp;date_of_birth=01/01/1980&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;product=BT2002&amp;coverage=700000&amp;utm_source=Source&amp;utm_name=Name&amp;utm_medium=Medium&amp;utm_content=Content&amp;utm_term=Term</code></p>
+<p><code>https://enrollment.bestow.com/get-started?widget=api&amp;quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&amp;date_of_birth=01/01/1980&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;product=BT2003&amp;coverage=700000&amp;utm_source=Source&amp;utm_name=Name&amp;utm_medium=Medium&amp;utm_content=Content&amp;utm_term=Term</code></p>
 </blockquote>
 
 <table><thead>
@@ -504,9 +466,24 @@ curl -X POST <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
+<td>widget</td>
+<td>true</td>
+<td>Use the value <code>api</code>. This tells Bestow&#39;s enrollment flow what method the user came from</td>
+</tr>
+<tr>
 <td>product</td>
 <td>true</td>
-<td>The product type ([either &quot;BT0201&quot;, &quot;BT1002&quot;, or &quot;BT2002&quot;]). See full description above</td>
+<td>The product type ([either &quot;BT1003&quot; or &quot;BT2003&quot;]). See full description above</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>true</td>
+<td>The integer face value of the life insurance policy in USD</td>
+</tr>
+<tr>
+<td>quoteid</td>
+<td>true</td>
+<td>The quoteid returned from the Quote API call. If this is not provided the user will have to go select a quote in enrollment</td>
 </tr>
 <tr>
 <td>date_of_birth</td>
@@ -534,14 +511,24 @@ curl -X POST <span class="se">\</span>
 <td>The 2-character abbreviation of the US state</td>
 </tr>
 <tr>
-<td>coverage</td>
+<td>zip</td>
 <td>false</td>
-<td>The face value of the life insurance policy in USD</td>
+<td>5 digit zipcode value</td>
 </tr>
 <tr>
-<td>quoteid</td>
+<td>partner_referral</td>
 <td>false</td>
-<td>The quoteid returned from the Quote API call</td>
+<td>String value of referring partner name. Used to determine knockout page partner rules</td>
+</tr>
+<tr>
+<td>email</td>
+<td>false</td>
+<td>Email in a valid string format</td>
+</tr>
+<tr>
+<td>premium</td>
+<td>false</td>
+<td>Which monthly premium was selected by the user at quote</td>
 </tr>
 </tbody></table>
 <h3 id='campaign-params'>Campaign Params</h3>
@@ -549,7 +536,7 @@ curl -X POST <span class="se">\</span>
 
 <table><thead>
 <tr>
-<th>Paremeter</th>
+<th>Parameter</th>
 </tr>
 </thead><tbody>
 <tr>
