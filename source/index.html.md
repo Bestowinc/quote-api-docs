@@ -28,7 +28,7 @@ curl -X POST \
 
 > Make sure to replace `82zZIHeBqUlBtICMX5li` with your API key.
 
-Bestow uses API keys to allow access to the API. You can register a new Bestow API key by sending an [email to us](mailto:jake@bestow.co).
+Bestow uses API keys to allow access to the API. Contact your business development manager to get an API key.
 
 Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
@@ -72,19 +72,7 @@ curl -X POST \
 ```json
 {
   "product_rates": {
-    "BT0201": {
-      "100000": "8.33",
-      "150000": "12.50",
-      "200000": "16.67",
-      "250000": "18.54",
-      "300000": "22.25",
-      "350000": "25.96",
-      "400000": "29.67",
-      "450000": "33.38",
-      "50000": "4.63",
-      "500000": "37.08"
-    },
-    "BT1002": {
+    "BT1003": {
       "100000": "11.25",
       "1000000": "55.83",
       "150000": "14.38",
@@ -106,7 +94,7 @@ curl -X POST \
       "900000": "50.58",
       "950000": "53.21"
     },
-    "BT2002": {
+    "BT2003": {
       "100000": "12.75",
       "1000000": "69.16",
       "150000": "16.63",
@@ -151,55 +139,42 @@ curl -X POST \
 
 ### Return values
 
-The call will receive a JSON object with a prices for a 2-year life insurance project (BT0201), 10-year product (BT1002), and a 20-year product (BT2002)
+The call will receive a JSON object with a prices for a 10-year product (BT1003) and a 20-year product (BT2003)
 
 | Product | Length of Policy |
 | ------- | ---------------- |
-| BT0201  | 2 year           |
-| BT1002  | 10 year          |
-| BT2002  | 20 year          |
+| BT1003  | 10 year          |
+| BT2003  | 20 year          |
 
-Inside the Product offering, you will recieve different prices for different amounts of insurance the customer can buy. In the example to the right, the values are
+Inside the Product offering, you will receive different prices for different amounts of insurance the customer can buy. In the example to the right, the values are
 
 | Product | Length of Policy | Face Value of Insurance | Price per Month |
 | ------- | ---------------- | ----------------------- | --------------- |
-| BT0201  | 2 year           | \$100,000               | \$8.33          |
-| BT0201  | 2 year           | \$150,000               | \$12.50         |
-| BT0201  | 2 year           | \$200,000               | \$16.67         |
+| BT2003  | 20 year          | \$100,000               | \$8.33          |
+| BT2003  | 20 year          | \$150,000               | \$12.50         |
+| BT2003  | 20 year          | \$200,000               | \$16.67         |
 
 ## Using Quote to Enroll
 
-> To enroll from a quote, use:
+> To enroll from a quote, redirect to:
 
-> `GET https://enrollment.hellobestow.com/get-started`
+> `https://enrollment.bestow.com/get-started`
 
-> Alternatively, `/account/create-account` can be used but is less preferred.
 
-> `GET https://enrollment.hellobestow.com/account/create-account`
-
-When you send customers to enroll in life insurance with Bestow, direct them to the following URL, and you can pass in query params that will link your quote to the enrollment application. You can additionally pass in other query param so that the enrollment application is pre-populated with that data.
-
-**_REQUIRED PARAMETERS_**:
-
-| Parameter | Value     | Description                                                                     |
-| --------- | --------- | ------------------------------------------------------------------------------- |
-| widget    | `api`     | This tells Bestow's enrollment flow what method the user came from              |
-| quoteid   | Unique ID | This ID is needed to link your customers' quote with the enrollment application |
-
-### HTTP Request
-
-`GET https://enrollment.hellobestow.com/get-started`
+When you send customers to enroll in life insurance with Bestow, redirect them to `enrollment.bestow.com/get-started`, and pass in the various query params that will link your quote to the enrollment application.
+You can additionally pass in optional query params so that the enrollment application is pre-populated with that data.
 
 ### Query Params
 
-> Example Using Query Parameters:
+> Example Redirect Using Query Parameters:
 
-> `GET https://enrollment.hellobestow.com/get-started?widget=api&quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&date_of_birth=01/01/1980&gender=male&height=72&weight=180&state=TN&product=BT2002&coverage=700000&utm_source=Source&utm_name=Name&utm_medium=Medium&utm_content=Content&utm_term=Term`
+> `https://enrollment.bestow.com/get-started?widget=api&quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&date_of_birth=01/01/1980&gender=male&height=72&weight=180&state=TN&product=BT2003&coverage=700000&utm_source=Source&utm_name=Name&utm_medium=Medium&utm_content=Content&utm_term=Term`
 
 | Parameter       | Required | Description                                                                                                                  |
 | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| product         | true     | The product type ([either "BT0201", "BT1002", or "BT2002"]). See full description above                                      |
-| coverage        | true     | The face value of the life insurance policy in USD                                                                           |
+| widget          | true     | Use the value `api`. This tells Bestow's enrollment flow what method the user came from                                      |
+| product         | true     | The product type ([either "BT1003" or "BT2003"]). See full description above                                                 |
+| coverage        | true     | The integer face value of the life insurance policy in USD                                                                   |
 | quoteid         | true     | The quoteid returned from the Quote API call. If this is not provided the user will have to go select a quote in enrollment  |
 | date_of_birth   | false    | Birth date in format YYYY-MM-DD                                                                                              |
 | gender          | false    | "male" or "female"                                                                                                           |
@@ -215,7 +190,7 @@ When you send customers to enroll in life insurance with Bestow, direct them to 
 
 You can provide `utm_` parameters for proper affiliate tracking. All parameters below are supported.
 
-| Paremeter   |
+| Parameter   |
 | ----------- |
 | utm_source  |
 | utm_name    |
