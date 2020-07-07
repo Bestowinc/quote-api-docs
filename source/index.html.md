@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='mailto:jake@bestow.co'>Sign Up for a Developer Key</a>
+  - Contact your business development <br> manager to get an API key.
 
 search: true
 ---
