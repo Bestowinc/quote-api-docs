@@ -198,9 +198,9 @@ You can provide `utm_` parameters for proper affiliate tracking. All parameters 
 | utm_content |
 | utm_term    |
 
-### Agent Params
+### Other Params
 
-Please note that passing agent parameters directly into the enrollment flow is not supported at this time. Agents must enter through an agent quote experience url such as https://bestow.com/agents/sampleagent/
+Please note that passing any URL parameters other than those explicitly listed above is not supported!
 
 # Errors
 
