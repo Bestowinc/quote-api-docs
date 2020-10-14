@@ -200,7 +200,7 @@ You can provide `utm_` parameters for proper affiliate tracking. All parameters 
 
 ### Other Params
 
-Please note that passing any URL parameters other than those explicitly listed above is not supported!
+Please note that passing any URL parameters other than those explicitly listed above is not supported! Please contact us if you have a use-case that is not supported by these parameters.
 
 # Errors
 
