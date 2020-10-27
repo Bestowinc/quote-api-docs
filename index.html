@@ -555,8 +555,37 @@ You can additionally pass in optional query params so that the enrollment applic
 <td>utm_term</td>
 </tr>
 </tbody></table>
-<h3 id='other-params'>Other Params</h3>
-<p>Please note that passing any URL parameters other than those explicitly listed above is not supported! Please contact us if you have a use-case that is not supported by these parameters.</p>
+<h3 id='agent-params'>Agent Params</h3>
+<p>These parameters are used for commission attribution for agents licensed and appointed to sell Bestow products. Please reach out to Bestow to obtain the URL and parameter values that should be used in your integration.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bestow_writing_agent</td>
+<td>false</td>
+<td>Agent id.</td>
+</tr>
+<tr>
+<td>hier</td>
+<td>false</td>
+<td>Legacy hierarchy id.</td>
+</tr>
+<tr>
+<td>ev_hier</td>
+<td>false</td>
+<td>Hierarchy id.</td>
+</tr>
+<tr>
+<td>prod</td>
+<td>false</td>
+<td>Product dependent?</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>The Bestow API uses the following error codes:</p>
 
