@@ -16,6 +16,10 @@ Welcome to the Bestow Quote API. Users of the API can get price quotes for Besto
 
 # Authentication
 
+There are two methods for authentication. Both methods require working with your Business Development point of contact to receive your authentication key/secret. 
+
+## API Keys
+
 > To authorize, use this code:
 
 ```shell
@@ -28,15 +32,16 @@ curl -X POST \
 
 > Make sure to replace `82zZIHeBqUlBtICMX5li` with your API key.
 
-Bestow uses API keys to allow access to the API. Contact your business development manager to get an API key.
-
-Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:
+The first option is to use an API key. Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: 82zZIHeBqUlBtICMX5li`
 
 <aside class="notice">
 You must replace <code>82zZIHeBqUlBtICMX5li</code> with your personal API key.
 </aside>
+
+## Using Partner_Referral in POST Body 
+Alternatively, you can skip the Authentication Header by instead adding your `partner_referral` parameter in the JSON within the POST body. Your unique `partner_referral` name must similarly be provided to you by Bestow.
 
 # Quote
 
@@ -56,7 +61,8 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -d '{
-	"birth_date": "1980-01-01",
+	"partner_referral": "partnername",
+  "birth_date": "1980-01-01",
 	"gender": "male",
 	"height_feet": 6,
 	"height_inches": 0,
@@ -127,15 +133,16 @@ curl -X POST \
 
 ### Query Parameters
 
-| Parameter       | Required | Description                                  |
-| --------------- | -------- | -------------------------------------------- |
-| birth_date      | true     | Birth date in format YYYY-MM-DD              |
-| gender          | true     | "male" or "female"                           |
-| height_feet     | true     | Feet part of height                          |
-| height_inches   | true     | Inches part of height                        |
-| state           | true     | The 2-character abbreviation of the US state |
-| weight          | true     | Weight in lbs                                |
-| tobacco         | false    | "yes" or "no" string                         |
+| Parameter       | Required | Description                                                             |
+| --------------- | -------- | ----------------------------------------------------------------------- |
+| partner_name    | false    | “PartnerName” provided by Bestow if not authenticating with an API key  |
+| birth_date      | true     | Birth date in format YYYY-MM-DD                                         |
+| gender          | true     | "male" or "female"                                                      |
+| height_feet     | true     | Feet part of height                                                     |
+| height_inches   | true     | Inches part of height                                                   |
+| state           | true     | The 2-character abbreviation of the US state                            |
+| weight          | true     | Weight in lbs                                                           |
+| tobacco         | false    | "yes" or "no" string, depending on whether the applicant has used tobacco in the past 12 months. Note, it is not “technically” required, but the response has a significant impact on the accuracy of the quoted price|
 
 ### Return values
 
@@ -150,30 +157,99 @@ Inside the Product offering, you will receive different prices for different amo
 
 | Product | Length of Policy | Face Value of Insurance | Price per Month |
 | ------- | ---------------- | ----------------------- | --------------- |
-| BT2003  | 20 year          | \$100,000               | \$8.33          |
-| BT2003  | 20 year          | \$150,000               | \$12.50         |
-| BT2003  | 20 year          | \$200,000               | \$16.67         |
+| BT2003  | 20 year          | \$100,000               | \$12.75         |
+| BT2003  | 20 year          | \$150,000               | \$16.63         |
+| BT2003  | 20 year          | \$200,000               | \$20.50         |
+
+In some cases, a customer might not be eligible based on their initial inputs to the quote, and as such these customers should not be instructed to apply for Bestow life insurance. The following responses cover these situations: 
+
+| Response               | Description                                                                                    |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| "ineligible": "bmi"    | Implies the applicant’s height/weight combination exceeds Bestow’s BMI underwriting threshold  |
+| "ineligible": "age"    | Implies the applicant’s age is outside of Bestow’s eligibility range                           |
+| {blank}                | Implies the applicant is from a state (e.g. NY) where Bestow currently does not offer policies |
+
+If a user is ineligible for multiple reasons, the API will only return a single ineligible reason.
 
 ## Using Quote to Enroll
 
-> To enroll from a quote, redirect to:
+Note the below instructions for how to link your customer to then complete the life insurance application at bestow.com will vary depending on whether your partnership is structured as an “affiliate” or “licensed agent” relationship. If you are unclear on your partnership structure, please reach out to your Business Development point of contact. 
+
+### Instructions for partnerships of Bestow structured as an “agent”
+
+> As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format:
+
+> `https://bestow.com/agents/[agentname]`
+
+When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format `bestow.com/agents/[agentname]` and passes in the various query parameters listed below. If you have not yet been provided these query parameters, then contact your Bestow Business Development manager directly or the Agent Operations team at `agents@bestow.com`.
+
+> Example Redirect Including Query Parameters:
+
+> `https://bestow.com/agents/BestAgent?bestow_writing_agent=12345678&hier=hier1_hier2&ev_hier=Evhier&prod=t&utm_source=Source&utm_medium=agents&date_of_birth=1980-01-01&gender=male&height=72&weight=180&state=TN&product=BT2003&coverage=700000&skipform=true`
+
+| Parameter            | Required | Description                                               |
+| -------------------- | -------- | ----------------------------------------------------------|
+| product              | true     | The product type (either "BT1003" or "BT2003"). See full description above.|
+| coverage             | true     | The integer face value of the life insurance policy in USD|
+| date_of_birth        | true     | Birth date in format YYYY-MM-DD                           |
+| gender               | true     | "male" or "female"                                        | 
+| height               | true     | Total height in inches                                    | 
+| weight               | true     | Total weight in lbs                                       | 
+| state                | true     | The 2-character abbreviation of the US state              | 
+| tobacco              | true     | "yes" or "no"                                             | 
+| skipform             | true     | Use the value “true”                                      | 
+| bestow_writing_agent | true     | Custom string in the format “######” provided to you by Bestow for proper agent commission tracking| 
+| hier                 | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
+| ev_hier              | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
+| prod                 | true     | "t" or "f", provided to you by Bestow for proper agent commission tracking| 
+| utm_source           | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
+| utm_medium           | true     | Use the value "agents"                                    | 
+| utm_content          | false    | Optionally provided to you by Bestow                      | 
+| utm_term             | false    | Optionally provided to you by Bestow                      | 
+
+### Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) established through Impact Radius
+
+> As an affiliate partner (utilizing Impact Radius), to enroll from a quote, redirect to your unique URL found in Impact Radius that is typically in the format:
+
+> `https://bestow.sjv.io/c/[12345678]/[123456]/[1234]`
+
+When you send customers to enroll in life insurance with Bestow, redirect them to your unique landing page provided by Impact Radius. This landing page URL is typically in the format `https://bestow.sjv.io/c/[12345678]/[123456]/[1234]` and pass in the various query parameters listed below. If you have not yet been provided these query parameters, then contact your Bestow Business Development manager directly.
+
+> Example Redirect Including Query Parameters:
+
+> `https://bestow.sjv.io/c/1395229/513723/8784?p.product=BT2003&p.coverage=700000&p.date_of_birth=1980-01-01&p.gender=male&p.height=72&p.weight=180&p.state=TN&p.tobacco=no&p.skipform=true`
+
+| Parameter            | Required | Description                                               |
+| -------------------- | -------- | ----------------------------------------------------------|
+| p.product            | true     | The product type (either "BT1003" or "BT2003"). See full description above.|
+| p.coverage           | true     | The integer face value of the life insurance policy in USD|
+| p.date_of_birth      | true     | Birth date in format YYYY-MM-DD                           |
+| p.gender             | true     | "male" or "female"                                        | 
+| p.height             | true     | Total height in inches                                    | 
+| p.weight             | true     | Total weight in lbs                                       | 
+| p.state              | true     | The 2-character abbreviation of the US state              | 
+| p.tobacco            | true     | "yes" or "no"                                             | 
+| p.skipform           | true     | Use the value “true”                                      | 
+
+Note, do not include any additional UTM parameters as these are already automatically included through your Impact Radius unique URL.
+
+### Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) and contracted directly
+
+> As an affiliate partner (directly contracted), to enroll from a quote, redirect to:
 
 > `https://enrollment.bestow.com/get-started`
-
 
 When you send customers to enroll in life insurance with Bestow, redirect them to `enrollment.bestow.com/get-started`, and pass in the various query params that will link your quote to the enrollment application.
 You can additionally pass in optional query params so that the enrollment application is pre-populated with that data.
 
-### Query Params
+> Example Redirect Including Query Parameters:
 
-> Example Redirect Using Query Parameters:
-
-> `https://enrollment.bestow.com/get-started?widget=api&quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&date_of_birth=01/01/1980&gender=male&height=72&weight=180&state=TN&product=BT2003&coverage=700000&utm_source=Source&utm_name=Name&utm_medium=Medium&utm_content=Content&utm_term=Term`
+> `https://enrollment.bestow.com/get-started?widget=api&quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&date_of_birth=1980-01-01&gender=male&height=72&weight=180&state=TN&product=BT2003&coverage=700000&utm_source=Source&utm_medium=Medium&utm_content=Content&utm_term=Term`
 
 | Parameter       | Required | Description                                                                                                                  |
 | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| widget          | true     | Use the value `api`. This tells Bestow's enrollment flow what method the user came from                                      |
-| product         | true     | The product type ([either "BT1003" or "BT2003"]). See full description above                                                 |
+| widget          | true     | Use the value "api". This tells Bestow's enrollment flow what method the user came from                                      |
+| product         | true     | The product type (either "BT1003" or "BT2003"). See full description above                                                   |
 | coverage        | true     | The integer face value of the life insurance policy in USD                                                                   |
 | quoteid         | true     | The quoteid returned from the Quote API call. If this is not provided the user will have to go select a quote in enrollment  |
 | date_of_birth   | false    | Birth date in format YYYY-MM-DD                                                                                              |
@@ -182,32 +258,14 @@ You can additionally pass in optional query params so that the enrollment applic
 | weight          | false    | Total weight in lbs                                                                                                          |
 | state           | false    | The 2-character abbreviation of the US state                                                                                 |
 | zip             | false    | 5 digit zipcode value                                                                                                        |
-| partner_referral| false    | String value of referring partner name. Used to determine knockout page partner rules                                        |
+| partner_referral| false    | String value of referring partner name. Used to determine knockout page partner rules. The name must be provided to you by Bestow.|
 | email           | false    | Email in a valid string format                                                                                               |
 | premium         | false    | Which monthly premium was selected by the user at quote                                                                      |
+| utm_source      | true     | Provided to you by Bestow for proper tracking, including revenue share payouts                                               |
+| utm_medium      | true     | Provided to you by Bestow for proper tracking, including revenue share payouts                                               |
+| utm_content     | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
+| utm_term        | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
 
-### Campaign Params
-
-You can provide `utm_` parameters for proper affiliate tracking. All parameters below are supported.
-
-| Parameter   |
-| ----------- |
-| utm_source  |
-| utm_name    |
-| utm_medium  |
-| utm_content |
-| utm_term    |
-
-### Agent Params
-
-These parameters are used for commission attribution for agents licensed and appointed to sell Bestow products. Please reach out to Bestow to obtain the URL and parameter values that should be used in your integration.
-
-| Parameter            | Required | Description               |
-| -------------------- | -------- | --------------------------|
-| bestow_writing_agent | false    | Agent id.                 |
-| hier                 | false    | Legacy hierarchy id.      |
-| ev_hier              | false    | Hierarchy id.             |
-| prod                 | false    | Product dependent?        | 
 
 # Errors
 
