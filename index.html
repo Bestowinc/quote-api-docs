@@ -42,7 +42,7 @@
 .highlight .cs {
   color: #75715e;
 }
-.highlight .c, .highlight .cd {
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
   color: #75715e;
 }
 .highlight .err {
@@ -126,7 +126,7 @@
 .highlight .s1 {
   color: #e6db74;
 }
-.highlight .s {
+.highlight .s, .highlight .sa, .highlight .dl {
   color: #e6db74;
 }
 .highlight .na {
@@ -141,41 +141,52 @@
 .highlight .ne {
   color: #a6e22e;
 }
-.highlight .nf {
+.highlight .nf, .highlight .fm {
   color: #a6e22e;
 }
 .highlight .vc {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nl {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
+  background-color: #272822;
 }
-.highlight .nv {
+.highlight .nv, .highlight .vm {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ow {
   color: #f92672;
@@ -196,20 +207,20 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+    <link href="stylesheets/screen-6da1a492.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-3acb792b.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-c5541673.js"></script>
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar-cad8cdcb.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/bestow-230x55.svg" class="logo" alt="Bestow 230x55" />
+      <img src="images/bestow-230x55-9d0719da.svg" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -223,6 +234,14 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-keys" class="toc-h2 toc-link" data-title="API Keys">API Keys</a>
+                  </li>
+                  <li>
+                    <a href="#using-partner_referral-in-post-body" class="toc-h2 toc-link" data-title="Using Partner_Referral in POST Body">Using Partner_Referral in POST Body</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#quote" class="toc-h1 toc-link" data-title="Quote">Quote</a>
@@ -249,28 +268,30 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the Bestow Quote API. Users of the API can get price quotes for Bestow life insurance products by passing in a few customer parameters.</p>
 <h1 id='authentication'>Authentication</h1>
+<p>There are two methods for authentication. Both methods require working with your Business Development point of contact to receive your authentication key/secret. </p>
+<h2 id='api-keys'>API Keys</h2>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>
-curl -X POST <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>
+curl <span class="nt">-X</span> POST <span class="se">\</span>
   https://api.hellobestow.com/v2/quote <span class="se">\</span>
-  -H <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-</code></pre>
+  <span class="nt">-H</span> <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+</code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>82zZIHeBqUlBtICMX5li</code> with your API key.</p>
 </blockquote>
 
-<p>Bestow uses API keys to allow access to the API. Contact your business development manager to get an API key.</p>
-
-<p>Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>The first option is to use an API key. Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
 <p><code>Authorization: 82zZIHeBqUlBtICMX5li</code></p>
 
 <aside class="notice">
 You must replace <code>82zZIHeBqUlBtICMX5li</code> with your personal API key.
 </aside>
+<h2 id='using-partner_referral-in-post-body'>Using Partner_Referral in POST Body</h2>
+<p>Alternatively, you can skip the Authentication Header by instead adding your <code>partner_referral</code> parameter in the JSON within the POST body. Your unique <code>partner_referral</code> name must similarly be provided to you by Bestow.</p>
 <h1 id='quote'>Quote</h1><h2 id='creating-a-quote'>Creating a Quote</h2>
 <p>Every insurance policy begins with a quote. You can think of quotes as templates that eventually turn into policies if a user decides to buy. Quotes are used to indicate the terms of the policy and the price (premium) associated with it.</p>
 
@@ -279,14 +300,15 @@ You must replace <code>82zZIHeBqUlBtICMX5li</code> with your personal API key.
 <blockquote>
 <p>To get a quote, use this code:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>
-curl -X POST <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>
+curl <span class="nt">-X</span> POST <span class="se">\</span>
   https://api.hellobestow.com/v2/quote <span class="se">\</span>
-  -H <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
-  -d <span class="s1">'{
-    "birth_date": "1980-01-01",
+  <span class="nt">-H</span> <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "partner_referral": "partnername",
+  "birth_date": "1980-01-01",
     "gender": "male",
     "height_feet": 6,
     "height_inches": 0,
@@ -295,60 +317,60 @@ curl -X POST <span class="se">\</span>
   "tobacco": "no"
 }
 '</span>
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"product_rates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"BT1003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.25"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.83"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.38"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"200000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.50"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"250000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.66"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"300000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.33"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"350000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"400000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24.66"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"450000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27.33"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"50000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.38"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"500000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29.58"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"550000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32.21"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"600000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.83"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"650000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.46"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"700000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.08"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"750000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.71"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"800000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.33"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"850000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.96"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"900000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.58"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"950000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53.21"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"product_rates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"BT1003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.25"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.83"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.38"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"200000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.50"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"250000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.66"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"300000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.33"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"350000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"400000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24.66"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"450000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27.33"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"50000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.38"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"500000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29.58"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"550000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32.21"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"600000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.83"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"650000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.46"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"700000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.08"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"750000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.71"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"800000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.33"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"850000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.96"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"900000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.58"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"950000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53.21"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"BT2003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.75"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69.16"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.63"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"200000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.50"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"250000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.04"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"300000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24.58"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"350000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.12"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"400000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.66"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"450000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.21"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"50000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.58"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"500000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36.25"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"550000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39.54"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"600000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.83"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"650000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46.12"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"700000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49.41"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"750000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.71"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"800000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"850000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59.29"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"900000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62.58"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"950000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.87"</span><span class="w">
+    </span><span class="nl">"BT2003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.75"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69.16"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.63"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"200000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.50"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"250000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.04"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"300000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24.58"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"350000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.12"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"400000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.66"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"450000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.21"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"50000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.58"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"500000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36.25"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"550000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39.54"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"600000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.83"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"650000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46.12"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"700000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49.41"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"750000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.71"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"800000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"850000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59.29"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"900000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62.58"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"950000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.87"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3b4d9e4-567d-4d77-95da-4761b7985320"</span><span class="w">
+  </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3b4d9e4-567d-4d77-95da-4761b7985320"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.hellobestow.com/v2/quote</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -358,6 +380,11 @@ curl -X POST <span class="se">\</span>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>partner_name</td>
+<td>false</td>
+<td>“PartnerName” provided by Bestow if not authenticating with an API key</td>
+</tr>
 <tr>
 <td>birth_date</td>
 <td>true</td>
@@ -391,7 +418,7 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>tobacco</td>
 <td>false</td>
-<td>&quot;yes&quot; or &quot;no&quot; string</td>
+<td>&quot;yes&quot; or &quot;no&quot; string, depending on whether the applicant has used tobacco in the past 12 months. Note, it is not “technically” required, but the response has a significant impact on the accuracy of the quoted price</td>
 </tr>
 </tbody></table>
 <h3 id='return-values'>Return values</h3>
@@ -427,35 +454,239 @@ curl -X POST <span class="se">\</span>
 <td>BT2003</td>
 <td>20 year</td>
 <td>\$100,000</td>
-<td>\$8.33</td>
+<td>\$12.75</td>
 </tr>
 <tr>
 <td>BT2003</td>
 <td>20 year</td>
 <td>\$150,000</td>
-<td>\$12.50</td>
+<td>\$16.63</td>
 </tr>
 <tr>
 <td>BT2003</td>
 <td>20 year</td>
 <td>\$200,000</td>
-<td>\$16.67</td>
+<td>\$20.50</td>
 </tr>
 </tbody></table>
+
+<p>In some cases, a customer might not be eligible based on their initial inputs to the quote, and as such these customers should not be instructed to apply for Bestow life insurance. The following responses cover these situations: </p>
+
+<table><thead>
+<tr>
+<th>Response</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&quot;ineligible&quot;: &quot;bmi&quot;</td>
+<td>Implies the applicant’s height/weight combination exceeds Bestow’s BMI underwriting threshold</td>
+</tr>
+<tr>
+<td>&quot;ineligible&quot;: &quot;age&quot;</td>
+<td>Implies the applicant’s age is outside of Bestow’s eligibility range</td>
+</tr>
+<tr>
+<td>{blank}</td>
+<td>Implies the applicant is from a state (e.g. NY) where Bestow currently does not offer policies</td>
+</tr>
+</tbody></table>
+
+<p>If a user is ineligible for multiple reasons, the API will only return a single ineligible reason.</p>
 <h2 id='using-quote-to-enroll'>Using Quote to Enroll</h2>
+<p>Note the below instructions for how to link your customer to then complete the life insurance application at bestow.com will vary depending on whether your partnership is structured as an “affiliate” or “licensed agent” relationship. If you are unclear on your partnership structure, please reach out to your Business Development point of contact. </p>
+<h3 id='instructions-for-partnerships-of-bestow-structured-as-an-agent'>Instructions for partnerships of Bestow structured as an “agent”</h3>
 <blockquote>
-<p>To enroll from a quote, redirect to:</p>
+<p>As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format:</p>
+
+<p><code>https://bestow.com/agents/[agentname]</code></p>
+</blockquote>
+
+<p>When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format <code>bestow.com/agents/[agentname]</code> and passes in the various query parameters listed below. If you have not yet been provided these query parameters, then contact your Bestow Business Development manager directly or the Agent Operations team at <code>agents@bestow.com</code>.</p>
+
+<blockquote>
+<p>Example Redirect Including Query Parameters:</p>
+
+<p><code>https://bestow.com/agents/BestAgent?bestow_writing_agent=12345678&amp;hier=hier1_hier2&amp;ev_hier=Evhier&amp;prod=t&amp;utm_source=Source&amp;utm_medium=agents&amp;date_of_birth=1980-01-01&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;product=BT2003&amp;coverage=700000&amp;skipform=true</code></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product</td>
+<td>true</td>
+<td>The product type (either &quot;BT1003&quot; or &quot;BT2003&quot;). See full description above.</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>true</td>
+<td>The integer face value of the life insurance policy in USD</td>
+</tr>
+<tr>
+<td>date_of_birth</td>
+<td>true</td>
+<td>Birth date in format YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>true</td>
+<td>&quot;male&quot; or &quot;female&quot;</td>
+</tr>
+<tr>
+<td>height</td>
+<td>true</td>
+<td>Total height in inches</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>true</td>
+<td>Total weight in lbs</td>
+</tr>
+<tr>
+<td>state</td>
+<td>true</td>
+<td>The 2-character abbreviation of the US state</td>
+</tr>
+<tr>
+<td>tobacco</td>
+<td>true</td>
+<td>&quot;yes&quot; or &quot;no&quot;</td>
+</tr>
+<tr>
+<td>skipform</td>
+<td>true</td>
+<td>Use the value “true”</td>
+</tr>
+<tr>
+<td>bestow_writing_agent</td>
+<td>true</td>
+<td>Custom string in the format “######” provided to you by Bestow for proper agent commission tracking</td>
+</tr>
+<tr>
+<td>hier</td>
+<td>true</td>
+<td>Custom string provided to you by Bestow for proper agent commission tracking</td>
+</tr>
+<tr>
+<td>ev_hier</td>
+<td>true</td>
+<td>Custom string provided to you by Bestow for proper agent commission tracking</td>
+</tr>
+<tr>
+<td>prod</td>
+<td>true</td>
+<td>&quot;t&quot; or &quot;f&quot;, provided to you by Bestow for proper agent commission tracking</td>
+</tr>
+<tr>
+<td>utm_source</td>
+<td>true</td>
+<td>Custom string provided to you by Bestow for proper agent commission tracking</td>
+</tr>
+<tr>
+<td>utm_medium</td>
+<td>true</td>
+<td>Use the value &quot;agents&quot;</td>
+</tr>
+<tr>
+<td>utm_content</td>
+<td>false</td>
+<td>Optionally provided to you by Bestow</td>
+</tr>
+<tr>
+<td>utm_term</td>
+<td>false</td>
+<td>Optionally provided to you by Bestow</td>
+</tr>
+</tbody></table>
+<h3 id='instructions-for-partnerships-of-bestow-structured-as-an-affiliate-non-licensed-agent-established-through-impact-radius'>Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) established through Impact Radius</h3>
+<blockquote>
+<p>As an affiliate partner (utilizing Impact Radius), to enroll from a quote, redirect to your unique URL found in Impact Radius that is typically in the format:</p>
+
+<p><code>https://bestow.sjv.io/c/[12345678]/[123456]/[1234]</code></p>
+</blockquote>
+
+<p>When you send customers to enroll in life insurance with Bestow, redirect them to your unique landing page provided by Impact Radius. This landing page URL is typically in the format <code>https://bestow.sjv.io/c/[12345678]/[123456]/[1234]</code> and pass in the various query parameters listed below. If you have not yet been provided these query parameters, then contact your Bestow Business Development manager directly.</p>
+
+<blockquote>
+<p>Example Redirect Including Query Parameters:</p>
+
+<p><code>https://bestow.sjv.io/c/1395229/513723/8784?p.product=BT2003&amp;p.coverage=700000&amp;p.date_of_birth=1980-01-01&amp;p.gender=male&amp;p.height=72&amp;p.weight=180&amp;p.state=TN&amp;p.tobacco=no&amp;p.skipform=true</code></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>p.product</td>
+<td>true</td>
+<td>The product type (either &quot;BT1003&quot; or &quot;BT2003&quot;). See full description above.</td>
+</tr>
+<tr>
+<td>p.coverage</td>
+<td>true</td>
+<td>The integer face value of the life insurance policy in USD</td>
+</tr>
+<tr>
+<td>p.date_of_birth</td>
+<td>true</td>
+<td>Birth date in format YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>p.gender</td>
+<td>true</td>
+<td>&quot;male&quot; or &quot;female&quot;</td>
+</tr>
+<tr>
+<td>p.height</td>
+<td>true</td>
+<td>Total height in inches</td>
+</tr>
+<tr>
+<td>p.weight</td>
+<td>true</td>
+<td>Total weight in lbs</td>
+</tr>
+<tr>
+<td>p.state</td>
+<td>true</td>
+<td>The 2-character abbreviation of the US state</td>
+</tr>
+<tr>
+<td>p.tobacco</td>
+<td>true</td>
+<td>&quot;yes&quot; or &quot;no&quot;</td>
+</tr>
+<tr>
+<td>p.skipform</td>
+<td>true</td>
+<td>Use the value “true”</td>
+</tr>
+</tbody></table>
+
+<p>Note, do not include any additional UTM parameters as these are already automatically included through your Impact Radius unique URL.</p>
+<h3 id='instructions-for-partnerships-of-bestow-structured-as-an-affiliate-non-licensed-agent-and-contracted-directly'>Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) and contracted directly</h3>
+<blockquote>
+<p>As an affiliate partner (directly contracted), to enroll from a quote, redirect to:</p>
 
 <p><code>https://enrollment.bestow.com/get-started</code></p>
 </blockquote>
 
 <p>When you send customers to enroll in life insurance with Bestow, redirect them to <code>enrollment.bestow.com/get-started</code>, and pass in the various query params that will link your quote to the enrollment application.
 You can additionally pass in optional query params so that the enrollment application is pre-populated with that data.</p>
-<h3 id='query-params'>Query Params</h3>
-<blockquote>
-<p>Example Redirect Using Query Parameters:</p>
 
-<p><code>https://enrollment.bestow.com/get-started?widget=api&amp;quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&amp;date_of_birth=01/01/1980&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;product=BT2003&amp;coverage=700000&amp;utm_source=Source&amp;utm_name=Name&amp;utm_medium=Medium&amp;utm_content=Content&amp;utm_term=Term</code></p>
+<blockquote>
+<p>Example Redirect Including Query Parameters:</p>
+
+<p><code>https://enrollment.bestow.com/get-started?widget=api&amp;quoteid=4ea338e6-56c5-4fd2-b07b-c0f90764afa1&amp;date_of_birth=1980-01-01&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;product=BT2003&amp;coverage=700000&amp;utm_source=Source&amp;utm_medium=Medium&amp;utm_content=Content&amp;utm_term=Term</code></p>
 </blockquote>
 
 <table><thead>
@@ -468,12 +699,12 @@ You can additionally pass in optional query params so that the enrollment applic
 <tr>
 <td>widget</td>
 <td>true</td>
-<td>Use the value <code>api</code>. This tells Bestow&#39;s enrollment flow what method the user came from</td>
+<td>Use the value &quot;api&quot;. This tells Bestow&#39;s enrollment flow what method the user came from</td>
 </tr>
 <tr>
 <td>product</td>
 <td>true</td>
-<td>The product type ([either &quot;BT1003&quot; or &quot;BT2003&quot;]). See full description above</td>
+<td>The product type (either &quot;BT1003&quot; or &quot;BT2003&quot;). See full description above</td>
 </tr>
 <tr>
 <td>coverage</td>
@@ -518,7 +749,7 @@ You can additionally pass in optional query params so that the enrollment applic
 <tr>
 <td>partner_referral</td>
 <td>false</td>
-<td>String value of referring partner name. Used to determine knockout page partner rules</td>
+<td>String value of referring partner name. Used to determine knockout page partner rules. The name must be provided to you by Bestow.</td>
 </tr>
 <tr>
 <td>email</td>
@@ -530,60 +761,25 @@ You can additionally pass in optional query params so that the enrollment applic
 <td>false</td>
 <td>Which monthly premium was selected by the user at quote</td>
 </tr>
-</tbody></table>
-<h3 id='campaign-params'>Campaign Params</h3>
-<p>You can provide <code>utm_</code> parameters for proper affiliate tracking. All parameters below are supported.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-</tr>
-</thead><tbody>
 <tr>
 <td>utm_source</td>
-</tr>
-<tr>
-<td>utm_name</td>
+<td>true</td>
+<td>Provided to you by Bestow for proper tracking, including revenue share payouts</td>
 </tr>
 <tr>
 <td>utm_medium</td>
+<td>true</td>
+<td>Provided to you by Bestow for proper tracking, including revenue share payouts</td>
 </tr>
 <tr>
 <td>utm_content</td>
+<td>false</td>
+<td>Potentially provided to you by Bestow for proper affiliate tracking.</td>
 </tr>
 <tr>
 <td>utm_term</td>
-</tr>
-</tbody></table>
-<h3 id='agent-params'>Agent Params</h3>
-<p>These parameters are used for commission attribution for agents licensed and appointed to sell Bestow products. Please reach out to Bestow to obtain the URL and parameter values that should be used in your integration.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bestow_writing_agent</td>
 <td>false</td>
-<td>Agent id.</td>
-</tr>
-<tr>
-<td>hier</td>
-<td>false</td>
-<td>Legacy hierarchy id.</td>
-</tr>
-<tr>
-<td>ev_hier</td>
-<td>false</td>
-<td>Hierarchy id.</td>
-</tr>
-<tr>
-<td>prod</td>
-<td>false</td>
-<td>Product dependent?</td>
+<td>Potentially provided to you by Bestow for proper affiliate tracking.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
