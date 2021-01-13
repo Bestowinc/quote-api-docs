@@ -146,14 +146,27 @@ curl -X POST \
 
 ### Return values
 
-The call will receive a JSON object with a prices for a 10-year product (BT1003) and a 20-year product (BT2003)
+The call will receive a JSON object with the prices for  for each term length for which the customer could potentially be eligible.
 
-| Product | Length of Policy |
-| ------- | ---------------- |
-| BT1003  | 10 year          |
-| BT2003  | 20 year          |
+Product codes (e.g. `BT1003`) will always conform to the following structure:
 
-Inside the Product offering, you will receive different prices for different amounts of insurance the customer can buy. In the example to the right, the values are
+- a two letter prefix ("BT"), followed by:
+- a two digit term length in years ("10"), followed by:
+- a two digit revision number ("03") that can update regularly
+
+Accordingly, term lengths can be dynamically parsed from any arbitrary product code. For example, given the product code `BT1504`, its term length can be derived to be "15 Years". 
+
+Note that it is possible for a user to only receive quotes for a subset of the available products. For instance, an older applicant might only get a quote for a 10 & 15 year product, but not the 20, 25, and 30 year product. 
+
+| Length of Policy | Product                  | In Production      |
+|------------------|--------------------------|--------------------|
+| 10 year          | BT1003, BT1004, BT1005.. | Yes                |
+| 15 year          | BT1503, BT1504, BT1505.. | No, coming Q1 2021 |
+| 20 year          | BT2003, BT2004, BT2005.. | Yes                |
+| 25 year          | BT2503, BT2504, BT2505.. | No, coming Q1 2021 |
+| 30 year          | BT3003, BT3004, BT3005.. | No, coming Q1 2021 |
+
+Inside the Product offering, you will receive different prices for different amounts of insurance coverage the customer can buy. Maximum coverage amounts offered by Bestow are currently $1,000,000, but will be increasing to $1,500,000 in Q1 2021. In the example to the right, the values are
 
 | Product | Length of Policy | Face Value of Insurance | Price per Month |
 | ------- | ---------------- | ----------------------- | --------------- |
@@ -196,7 +209,7 @@ When you send customers to enroll in life insurance with Bestow, redirect them t
 | height               | true     | Total height in inches                                    | 
 | weight               | true     | Total weight in lbs                                       | 
 | state                | true     | The 2-character abbreviation of the US state              | 
-| tobacco              | true     | "yes" or "no"                                             | 
+| tobacco              | false     | "yes" or "no"                                             | 
 | skipform             | true     | Use the value “true”                                      | 
 | bestow_writing_agent | true     | Custom string in the format “######” provided to you by Bestow for proper agent commission tracking| 
 | hier                 | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
