@@ -42,7 +42,7 @@
 .highlight .cs {
   color: #75715e;
 }
-.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+.highlight .c, .highlight .cd {
   color: #75715e;
 }
 .highlight .err {
@@ -126,7 +126,7 @@
 .highlight .s1 {
   color: #e6db74;
 }
-.highlight .s, .highlight .sa, .highlight .dl {
+.highlight .s {
   color: #e6db74;
 }
 .highlight .na {
@@ -141,52 +141,41 @@
 .highlight .ne {
   color: #a6e22e;
 }
-.highlight .nf, .highlight .fm {
+.highlight .nf {
   color: #a6e22e;
 }
 .highlight .vc {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .nl {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
-  background-color: #272822;
 }
-.highlight .nv, .highlight .vm {
+.highlight .nv {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .ow {
   color: #f92672;
@@ -207,20 +196,20 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-6da1a492.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-3acb792b.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-c5541673.js"></script>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar-cad8cdcb.png" alt="" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/bestow-230x55-9d0719da.svg" class="logo" alt="" />
+      <img src="images/bestow-230x55.svg" class="logo" alt="Bestow 230x55" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -273,12 +262,12 @@
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>
+curl -X POST <span class="se">\</span>
   https://api.hellobestow.com/v2/quote <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-</code></pre></div>
+  -H <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+</code></pre>
 <blockquote>
 <p>Make sure to replace <code>82zZIHeBqUlBtICMX5li</code> with your API key.</p>
 </blockquote>
@@ -300,13 +289,13 @@ You must replace <code>82zZIHeBqUlBtICMX5li</code> with your personal API key.
 <blockquote>
 <p>To get a quote, use this code:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>
+curl -X POST <span class="se">\</span>
   https://api.hellobestow.com/v2/quote <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
-  <span class="nt">-d</span> <span class="s1">'{
+  -H <span class="s1">'Authorization: 82zZIHeBqUlBtICMX5li'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
+  -d <span class="s1">'{
     "partner_referral": "partnername",
   "birth_date": "1980-01-01",
     "gender": "male",
@@ -317,61 +306,65 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
   "tobacco": "no"
 }
 '</span>
-</code></pre></div>
+</code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"product_rates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"BT1003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.25"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.83"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.38"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"200000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.50"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"250000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.66"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"300000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.33"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"350000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"400000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24.66"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"450000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27.33"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"50000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.38"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"500000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29.58"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"550000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32.21"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"600000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.83"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"650000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.46"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"700000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.08"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"750000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.71"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"800000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.33"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"850000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.96"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"900000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.58"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"950000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53.21"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"BT2003"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"100000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.75"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"1000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69.16"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"150000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.63"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"200000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.50"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"250000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.04"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"300000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24.58"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"350000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.12"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"400000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31.66"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"450000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.21"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"50000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.58"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"500000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36.25"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"550000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39.54"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"600000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42.83"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"650000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46.12"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"700000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49.41"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"750000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52.71"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"800000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56.00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"850000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59.29"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"900000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62.58"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"950000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.87"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"product_rates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"BT1004"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"100000"</span><span class="p">:</span><span class="s2">"14.25"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"1000000"</span><span class="p">:</span><span class="s2">"62.67"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"150000"</span><span class="p">:</span><span class="s2">"18.38"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"200000"</span><span class="p">:</span><span class="s2">"22.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"250000"</span><span class="p">:</span><span class="s2">"24.33"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"300000"</span><span class="p">:</span><span class="s2">"28.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"350000"</span><span class="p">:</span><span class="s2">"31.67"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"400000"</span><span class="p">:</span><span class="s2">"35.33"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"450000"</span><span class="p">:</span><span class="s2">"39.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"50000"</span><span class="p">:</span><span class="s2">"10.46"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"500000"</span><span class="p">:</span><span class="s2">"34.33"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"550000"</span><span class="p">:</span><span class="s2">"37.17"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"600000"</span><span class="p">:</span><span class="s2">"40.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"650000"</span><span class="p">:</span><span class="s2">"42.83"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"700000"</span><span class="p">:</span><span class="s2">"45.67"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"750000"</span><span class="p">:</span><span class="s2">"48.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"800000"</span><span class="p">:</span><span class="s2">"51.33"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"850000"</span><span class="p">:</span><span class="s2">"54.17"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"900000"</span><span class="p">:</span><span class="s2">"57.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"950000"</span><span class="p">:</span><span class="s2">"59.83"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"BT2004"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"100000"</span><span class="p">:</span><span class="s2">"16.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"1000000"</span><span class="p">:</span><span class="s2">"76.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"150000"</span><span class="p">:</span><span class="s2">"21.75"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"200000"</span><span class="p">:</span><span class="s2">"27.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"250000"</span><span class="p">:</span><span class="s2">"32.25"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"300000"</span><span class="p">:</span><span class="s2">"37.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"350000"</span><span class="p">:</span><span class="s2">"42.75"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"400000"</span><span class="p">:</span><span class="s2">"48.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"450000"</span><span class="p">:</span><span class="s2">"53.25"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"50000"</span><span class="p">:</span><span class="s2">"11.33"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"500000"</span><span class="p">:</span><span class="s2">"41.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"550000"</span><span class="p">:</span><span class="s2">"44.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"600000"</span><span class="p">:</span><span class="s2">"48.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"650000"</span><span class="p">:</span><span class="s2">"51.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"700000"</span><span class="p">:</span><span class="s2">"55.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"750000"</span><span class="p">:</span><span class="s2">"58.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"800000"</span><span class="p">:</span><span class="s2">"62.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"850000"</span><span class="p">:</span><span class="s2">"65.50"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"900000"</span><span class="p">:</span><span class="s2">"69.00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"950000"</span><span class="p">:</span><span class="s2">"72.50"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3b4d9e4-567d-4d77-95da-4761b7985320"</span><span class="w">
+  </span><span class="s2">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3b4d9e4-567d-4d77-95da-4761b7985320"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.hellobestow.com/v2/quote</code></p>
+
+<p>*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally include this parameter to ensure you are getting the most up-to-date quotes. </p>
+
+<p>POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true</p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -422,25 +415,55 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 </tr>
 </tbody></table>
 <h3 id='return-values'>Return values</h3>
-<p>The call will receive a JSON object with a prices for a 10-year product (BT1003) and a 20-year product (BT2003)</p>
+<p>The call will receive a JSON object with the prices for  for each term length for which the customer could potentially be eligible.</p>
+
+<p>Product codes (e.g. <code>BT1003</code>) will always conform to the following structure:</p>
+
+<ul>
+<li>a two letter prefix (&quot;BT&quot;), followed by:</li>
+<li>a two digit term length in years (&quot;10&quot;), followed by:</li>
+<li>a two digit revision number (&quot;03&quot;) that can update regularly</li>
+</ul>
+
+<p>Accordingly, term lengths can be dynamically parsed from any arbitrary product code. For example, given the product code <code>BT1504</code>, its term length can be derived to be &quot;15 Years&quot;. </p>
+
+<p>Note that it is possible for a user to only receive quotes for a subset of the available products. For instance, an older applicant might only get a quote for a 10 &amp; 15 year product, but not the 20, 25, and 30 year product. </p>
 
 <table><thead>
 <tr>
-<th>Product</th>
 <th>Length of Policy</th>
+<th>Product</th>
+<th>In Production</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>BT1003</td>
 <td>10 year</td>
+<td>BT1003, BT1004, BT1005..</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>BT2003</td>
+<td>15 year</td>
+<td>BT1503, BT1504, BT1505..</td>
+<td>No, coming Q1 2021</td>
+</tr>
+<tr>
 <td>20 year</td>
+<td>BT2003, BT2004, BT2005..</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>25 year</td>
+<td>BT2503, BT2504, BT2505..</td>
+<td>No, coming Q1 2021</td>
+</tr>
+<tr>
+<td>30 year</td>
+<td>BT3003, BT3004, BT3005..</td>
+<td>No, coming Q1 2021</td>
 </tr>
 </tbody></table>
 
-<p>Inside the Product offering, you will receive different prices for different amounts of insurance the customer can buy. In the example to the right, the values are</p>
+<p>Inside the Product offering, you will receive different prices for different amounts of insurance coverage the customer can buy. Maximum coverage amounts offered by Bestow are currently $1,000,000, but will be increasing to $1,500,000 in Q1 2021. In the example to the right, the values are</p>
 
 <table><thead>
 <tr>
@@ -451,22 +474,22 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>BT2003</td>
+<td>BT2004</td>
 <td>20 year</td>
 <td>\$100,000</td>
-<td>\$12.75</td>
+<td>\$14.25</td>
 </tr>
 <tr>
-<td>BT2003</td>
+<td>BT2004</td>
 <td>20 year</td>
 <td>\$150,000</td>
-<td>\$16.63</td>
+<td>\$21.75</td>
 </tr>
 <tr>
-<td>BT2003</td>
+<td>BT2004</td>
 <td>20 year</td>
 <td>\$200,000</td>
-<td>\$20.50</td>
+<td>\$27.00</td>
 </tr>
 </tbody></table>
 
@@ -554,7 +577,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 </tr>
 <tr>
 <td>tobacco</td>
-<td>true</td>
+<td>false</td>
 <td>&quot;yes&quot; or &quot;no&quot;</td>
 </tr>
 <tr>
