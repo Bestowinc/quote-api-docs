@@ -78,50 +78,50 @@ curl -X POST \
 ```json
 {
   "product_rates": {
-    "BT1003": {
-      "100000": "11.25",
-      "1000000": "55.83",
-      "150000": "14.38",
-      "200000": "17.50",
-      "250000": "16.66",
-      "300000": "19.33",
-      "350000": "22.00",
-      "400000": "24.66",
-      "450000": "27.33",
-      "50000": "11.38",
-      "500000": "29.58",
-      "550000": "32.21",
-      "600000": "34.83",
-      "650000": "37.46",
-      "700000": "40.08",
-      "750000": "42.71",
-      "800000": "45.33",
-      "850000": "47.96",
-      "900000": "50.58",
-      "950000": "53.21"
-    },
-    "BT2003": {
-      "100000": "12.75",
-      "1000000": "69.16",
-      "150000": "16.63",
-      "200000": "20.50",
-      "250000": "21.04",
-      "300000": "24.58",
-      "350000": "28.12",
-      "400000": "31.66",
-      "450000": "35.21",
-      "50000": "10.58",
-      "500000": "36.25",
-      "550000": "39.54",
-      "600000": "42.83",
-      "650000": "46.12",
-      "700000": "49.41",
-      "750000": "52.71",
-      "800000": "56.00",
-      "850000": "59.29",
-      "900000": "62.58",
-      "950000": "65.87"
-    }
+    "BT1004":{
+         "100000":"14.25",
+         "1000000":"62.67",
+         "150000":"18.38",
+         "200000":"22.50",
+         "250000":"24.33",
+         "300000":"28.00",
+         "350000":"31.67",
+         "400000":"35.33",
+         "450000":"39.00",
+         "50000":"10.46",
+         "500000":"34.33",
+         "550000":"37.17",
+         "600000":"40.00",
+         "650000":"42.83",
+         "700000":"45.67",
+         "750000":"48.50",
+         "800000":"51.33",
+         "850000":"54.17",
+         "900000":"57.00",
+         "950000":"59.83"
+      },
+      "BT2004":{
+         "100000":"16.50",
+         "1000000":"76.00",
+         "150000":"21.75",
+         "200000":"27.00",
+         "250000":"32.25",
+         "300000":"37.50",
+         "350000":"42.75",
+         "400000":"48.00",
+         "450000":"53.25",
+         "50000":"11.33",
+         "500000":"41.00",
+         "550000":"44.50",
+         "600000":"48.00",
+         "650000":"51.50",
+         "700000":"55.00",
+         "750000":"58.50",
+         "800000":"62.00",
+         "850000":"65.50",
+         "900000":"69.00",
+         "950000":"72.50"
+      }
   },
   "quote_id": "a3b4d9e4-567d-4d77-95da-4761b7985320"
 }
@@ -130,6 +130,10 @@ curl -X POST \
 ### HTTP Request
 
 `POST https://api.hellobestow.com/v2/quote`
+
+*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally include this parameter to ensure you are getting the most up-to-date quotes. 
+
+POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true
 
 ### Query Parameters
 
@@ -146,20 +150,33 @@ curl -X POST \
 
 ### Return values
 
-The call will receive a JSON object with a prices for a 10-year product (BT1003) and a 20-year product (BT2003)
+The call will receive a JSON object with the prices for  for each term length for which the customer could potentially be eligible.
 
-| Product | Length of Policy |
-| ------- | ---------------- |
-| BT1003  | 10 year          |
-| BT2003  | 20 year          |
+Product codes (e.g. `BT1003`) will always conform to the following structure:
 
-Inside the Product offering, you will receive different prices for different amounts of insurance the customer can buy. In the example to the right, the values are
+- a two letter prefix ("BT"), followed by:
+- a two digit term length in years ("10"), followed by:
+- a two digit revision number ("03") that can update regularly
+
+Accordingly, term lengths can be dynamically parsed from any arbitrary product code. For example, given the product code `BT1504`, its term length can be derived to be "15 Years". 
+
+Note that it is possible for a user to only receive quotes for a subset of the available products. For instance, an older applicant might only get a quote for a 10 & 15 year product, but not the 20, 25, and 30 year product. 
+
+| Length of Policy | Product                  | In Production      |
+|------------------|--------------------------|--------------------|
+| 10 year          | BT1003, BT1004, BT1005.. | Yes                |
+| 15 year          | BT1503, BT1504, BT1505.. | No, coming Q1 2021 |
+| 20 year          | BT2003, BT2004, BT2005.. | Yes                |
+| 25 year          | BT2503, BT2504, BT2505.. | No, coming Q1 2021 |
+| 30 year          | BT3003, BT3004, BT3005.. | No, coming Q1 2021 |
+
+Inside the Product offering, you will receive different prices for different amounts of insurance coverage the customer can buy. Maximum coverage amounts offered by Bestow are currently $1,000,000, but will be increasing to $1,500,000 in Q1 2021. In the example to the right, the values are
 
 | Product | Length of Policy | Face Value of Insurance | Price per Month |
 | ------- | ---------------- | ----------------------- | --------------- |
-| BT2003  | 20 year          | \$100,000               | \$12.75         |
-| BT2003  | 20 year          | \$150,000               | \$16.63         |
-| BT2003  | 20 year          | \$200,000               | \$20.50         |
+| BT2004  | 20 year          | \$100,000               | \$14.25         |
+| BT2004  | 20 year          | \$150,000               | \$21.75         |
+| BT2004  | 20 year          | \$200,000               | \$27.00         |
 
 In some cases, a customer might not be eligible based on their initial inputs to the quote, and as such these customers should not be instructed to apply for Bestow life insurance. The following responses cover these situations: 
 
@@ -196,7 +213,7 @@ When you send customers to enroll in life insurance with Bestow, redirect them t
 | height               | true     | Total height in inches                                    | 
 | weight               | true     | Total weight in lbs                                       | 
 | state                | true     | The 2-character abbreviation of the US state              | 
-| tobacco              | true     | "yes" or "no"                                             | 
+| tobacco              | false     | "yes" or "no"                                             | 
 | skipform             | true     | Use the value “true”                                      | 
 | bestow_writing_agent | true     | Custom string in the format “######” provided to you by Bestow for proper agent commission tracking| 
 | hier                 | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
