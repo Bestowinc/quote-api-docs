@@ -131,6 +131,10 @@ curl -X POST \
 
 `POST https://api.hellobestow.com/v2/quote`
 
+*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally include this parameter to ensure you are getting the most up-to-date quotes. 
+
+POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true
+
 ### Query Parameters
 
 | Parameter       | Required | Description                                                             |
