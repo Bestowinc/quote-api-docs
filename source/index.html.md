@@ -213,7 +213,7 @@ When you send customers to enroll in life insurance with Bestow, redirect them t
 | height               | true     | Total height in inches                                    | 
 | weight               | true     | Total weight in lbs                                       | 
 | state                | true     | The 2-character abbreviation of the US state              | 
-| tobacco              | false     | "yes" or "no"                                             | 
+| tobacco              | false    | "yes" or "no"                                             | 
 | skipform             | true     | Use the value “true”                                      | 
 | bestow_writing_agent | true     | Custom string in the format “######” provided to you by Bestow for proper agent commission tracking| 
 | hier                 | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
@@ -222,7 +222,8 @@ When you send customers to enroll in life insurance with Bestow, redirect them t
 | utm_source           | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
 | utm_medium           | true     | Use the value "agents"                                    | 
 | utm_content          | false    | Optionally provided to you by Bestow                      | 
-| utm_term             | false    | Optionally provided to you by Bestow                      | 
+| utm_term             | false    | Optionally provided to you by Bestow                      |
+| partner_user_id      | false    | Optionally provided to you by Bestow                      | 
 
 ### Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) established through Impact Radius
 
@@ -282,6 +283,7 @@ You can additionally pass in optional query params so that the enrollment applic
 | utm_medium      | true     | Provided to you by Bestow for proper tracking, including revenue share payouts                                               |
 | utm_content     | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
 | utm_term        | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
+| partner_user_id | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
 
 
 # Errors
