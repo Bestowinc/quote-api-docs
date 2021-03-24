@@ -129,11 +129,11 @@ curl -X POST \
 
 ### HTTP Request
 
-`POST https://api.hellobestow.com/v2/quote`
+`POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true`
 
-*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally include this parameter to ensure you are getting the most up-to-date quotes. 
+*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. This parameter is should be included by default, but will be phased out in the near future. 
 
-POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true
+
 
 ### Query Parameters
 
@@ -222,7 +222,8 @@ When you send customers to enroll in life insurance with Bestow, redirect them t
 | utm_source           | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
 | utm_medium           | true     | Use the value "agents"                                    | 
 | utm_content          | false    | Optionally provided to you by Bestow                      | 
-| utm_term             | false    | Optionally provided to you by Bestow                      | 
+| utm_term             | false    | Optionally provided to you by Bestow                      |
+| partner_user_id      | false    | Optionally provided to you by Bestow                      |
 
 ### Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) established through Impact Radius
 
@@ -282,6 +283,7 @@ You can additionally pass in optional query params so that the enrollment applic
 | utm_medium      | true     | Provided to you by Bestow for proper tracking, including revenue share payouts                                               |
 | utm_content     | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
 | utm_term        | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
+| partner_user_id | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
 
 
 # Errors
