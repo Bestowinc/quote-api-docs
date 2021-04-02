@@ -131,15 +131,14 @@ curl -X POST \
 
 `POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true`
 
-*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. This parameter should be included by default, but will be phased out in the near future. If you are an established partner and have yet to implement the new pricing and product codes, you can set "enable_2019_plus=false" to continue to return the previous product portfolio.
-
+*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally set this parameter to false if you have not yet integrated the new product codes into your code. You can also choose to leave the "enable_2019_plus" parameter out, which will return the same values as if it were set to false.
 
 
 ### Query Parameters
 
 | Parameter       | Required | Description                                                             |
 | --------------- | -------- | ----------------------------------------------------------------------- |
-| partner_name    | false    | “PartnerName” provided by Bestow if not authenticating with an API key  |
+| partner_referral| false    | “PartnerName” provided by Bestow if not authenticating with an API key  |
 | birth_date      | true     | Birth date in format YYYY-MM-DD                                         |
 | gender          | true     | "male" or "female"                                                      |
 | height_feet     | true     | Feet part of height                                                     |
@@ -152,11 +151,11 @@ curl -X POST \
 
 The call will receive a JSON object with the prices for  for each term length for which the customer could potentially be eligible.
 
-Product codes (e.g. `BT1003`) will always conform to the following structure:
+Product codes (e.g. `BT1004`) will always conform to the following structure:
 
 - a two letter prefix ("BT"), followed by:
 - a two digit term length in years ("10"), followed by:
-- a two digit revision number ("03") that can update regularly
+- a two digit revision number ("04") that can update regularly
 
 Accordingly, term lengths can be dynamically parsed from any arbitrary product code. For example, given the product code `BT1504`, its term length can be derived to be "15 Years". 
 
@@ -165,16 +164,16 @@ Note that it is possible for a user to only receive quotes for a subset of the a
 | Length of Policy | Product                  | In Production      |
 |------------------|--------------------------|--------------------|
 | 10 year          | BT1003, BT1004, BT1005.. | Yes                |
-| 15 year          | BT1503, BT1504, BT1505.. | No, coming Q1 2021 |
+| 15 year          | BT1503, BT1504, BT1505.. | Yes                |
 | 20 year          | BT2003, BT2004, BT2005.. | Yes                |
-| 25 year          | BT2503, BT2504, BT2505.. | No, coming Q1 2021 |
-| 30 year          | BT3003, BT3004, BT3005.. | No, coming Q1 2021 |
+| 25 year          | BT2503, BT2504, BT2505.. | Yes                |
+| 30 year          | BT3003, BT3004, BT3005.. | Yes                |
 
-Inside the Product offering, you will receive different prices for different amounts of insurance coverage the customer can buy. Maximum coverage amounts offered by Bestow are currently $1,000,000, but will be increasing to $1,500,000 in Q1 2021. In the example to the right, the values are
+Inside the Product offering, you will receive different prices for different amounts of insurance coverage the customer can buy. Maximum coverage amounts offered by Bestow are currently $1,500,000. In the example to the right, the values are
 
 | Product | Length of Policy | Face Value of Insurance | Price per Month |
 | ------- | ---------------- | ----------------------- | --------------- |
-| BT2004  | 20 year          | \$100,000               | \$14.25         |
+| BT1004  | 10 year          | \$100,000               | \$14.25         |
 | BT2004  | 20 year          | \$150,000               | \$21.75         |
 | BT2004  | 20 year          | \$200,000               | \$27.00         |
 
@@ -194,35 +193,27 @@ Note the below instructions for how to link your customer to then complete the l
 
 ### Instructions for partnerships of Bestow structured as an “agent”
 
-> As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format:
+> As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format (the [agentkey] after the forward slash is a unique key given to you by the Bestow team):
 
-> `https://bestow.com/agents/[agentname]`
+> `https://agent-quote.bestow.com/[agentkey]`
 
-When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format `bestow.com/agents/[agentname]` and passes in the various query parameters listed below. If you have not yet been provided these query parameters, then contact your Bestow Business Development manager directly or the Agent Operations team at `agents@bestow.com`.
+When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format `agent-quote.bestow.com/[agentkey]` and passes in the various query parameters listed below. If you have not yet been provided your [agentkey], then contact your Bestow Business Development manager directly or the Agent Operations team at `agents@bestow.com`.
 
 > Example Redirect Including Query Parameters:
 
-> `https://bestow.com/agents/BestAgent?bestow_writing_agent=12345678&hier=hier1_hier2&ev_hier=Evhier&prod=t&utm_source=Source&utm_medium=agents&date_of_birth=1980-01-01&gender=male&height=72&weight=180&state=TN&product=BT2003&coverage=700000&skipform=true`
+> `https://agent-quote.bestow.com/[agentkey]?date_of_birth=1980-01-01&gender=male&height=72&weight=180&state=TN&tobacco=no&product=BT2004&coverage=700000&skipform=true`
 
 | Parameter            | Required | Description                                               |
 | -------------------- | -------- | ----------------------------------------------------------|
-| product              | true     | The product type (either "BT1003" or "BT2003"). See full description above.|
+| product              | true     | The product type (e.g. "BT1004"). See full description above.|
 | coverage             | true     | The integer face value of the life insurance policy in USD|
 | date_of_birth        | true     | Birth date in format YYYY-MM-DD                           |
 | gender               | true     | "male" or "female"                                        | 
 | height               | true     | Total height in inches                                    | 
 | weight               | true     | Total weight in lbs                                       | 
 | state                | true     | The 2-character abbreviation of the US state              | 
-| tobacco              | false     | "yes" or "no"                                             | 
-| skipform             | true     | Use the value “true”                                      | 
-| bestow_writing_agent | true     | Custom string in the format “######” provided to you by Bestow for proper agent commission tracking| 
-| hier                 | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
-| ev_hier              | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
-| prod                 | true     | "t" or "f", provided to you by Bestow for proper agent commission tracking| 
-| utm_source           | true     | Custom string provided to you by Bestow for proper agent commission tracking| 
-| utm_medium           | true     | Use the value "agents"                                    | 
-| utm_content          | false    | Optionally provided to you by Bestow                      | 
-| utm_term             | false    | Optionally provided to you by Bestow                      |
+| tobacco              | true     | "yes" or "no"                                             | 
+| skipform             | true     | Use the value “true”                                      |
 | partner_user_id      | false    | Optionally provided by you to Bestow                      |
 
 ### Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) established through Impact Radius
@@ -283,8 +274,7 @@ You can additionally pass in optional query params so that the enrollment applic
 | utm_medium      | true     | Provided to you by Bestow for proper tracking, including revenue share payouts                                               |
 | utm_content     | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
 | utm_term        | false    | Potentially provided to you by Bestow for proper affiliate tracking.                                                         |
-| partner_user_id | false    | Potentially provided by you to Bestow for proper affiliate tracking.                                                         |
-
+| partner_user_id | false    | Potentially provided by you to Bestow for proper customer tracking.                                                         |
 
 # Errors
 
