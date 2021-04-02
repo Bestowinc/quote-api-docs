@@ -131,7 +131,7 @@ curl -X POST \
 
 `POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true`
 
-*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. This parameter is should be included by default, but will be phased out in the near future. If you are an established partner and have yet to implement the new pricing and product codes, you can set "enable_2019_plus=false" to continue to return the previous product portfolio.
+*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. This parameter should be included by default, but will be phased out in the near future. If you are an established partner and have yet to implement the new pricing and product codes, you can set "enable_2019_plus=false" to continue to return the previous product portfolio.
 
 
 
