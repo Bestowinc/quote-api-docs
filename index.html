@@ -360,11 +360,9 @@ curl -X POST <span class="se">\</span>
   </span><span class="s2">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3b4d9e4-567d-4d77-95da-4761b7985320"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.hellobestow.com/v2/quote</code></p>
+<p><code>POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true</code></p>
 
-<p>*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally include this parameter to ensure you are getting the most up-to-date quotes. </p>
-
-<p>POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true</p>
+<p>*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally set this parameter to false if you have not yet integrated the new product codes into your code. You can also choose to leave the &quot;enable_2019_plus&quot; parameter out, which will return the same values as if it were set to false.</p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -374,7 +372,7 @@ curl -X POST <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>partner_name</td>
+<td>partner_referral</td>
 <td>false</td>
 <td>“PartnerName” provided by Bestow if not authenticating with an API key</td>
 </tr>
@@ -417,12 +415,12 @@ curl -X POST <span class="se">\</span>
 <h3 id='return-values'>Return values</h3>
 <p>The call will receive a JSON object with the prices for  for each term length for which the customer could potentially be eligible.</p>
 
-<p>Product codes (e.g. <code>BT1003</code>) will always conform to the following structure:</p>
+<p>Product codes (e.g. <code>BT1004</code>) will always conform to the following structure:</p>
 
 <ul>
 <li>a two letter prefix (&quot;BT&quot;), followed by:</li>
 <li>a two digit term length in years (&quot;10&quot;), followed by:</li>
-<li>a two digit revision number (&quot;03&quot;) that can update regularly</li>
+<li>a two digit revision number (&quot;04&quot;) that can update regularly</li>
 </ul>
 
 <p>Accordingly, term lengths can be dynamically parsed from any arbitrary product code. For example, given the product code <code>BT1504</code>, its term length can be derived to be &quot;15 Years&quot;. </p>
@@ -444,7 +442,7 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>15 year</td>
 <td>BT1503, BT1504, BT1505..</td>
-<td>No, coming Q1 2021</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>20 year</td>
@@ -454,16 +452,16 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>25 year</td>
 <td>BT2503, BT2504, BT2505..</td>
-<td>No, coming Q1 2021</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>30 year</td>
 <td>BT3003, BT3004, BT3005..</td>
-<td>No, coming Q1 2021</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
 
-<p>Inside the Product offering, you will receive different prices for different amounts of insurance coverage the customer can buy. Maximum coverage amounts offered by Bestow are currently $1,000,000, but will be increasing to $1,500,000 in Q1 2021. In the example to the right, the values are</p>
+<p>Inside the Product offering, you will receive different prices for different amounts of insurance coverage the customer can buy. Maximum coverage amounts offered by Bestow are currently $1,500,000. In the example to the right, the values are</p>
 
 <table><thead>
 <tr>
@@ -474,8 +472,8 @@ curl -X POST <span class="se">\</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>BT2004</td>
-<td>20 year</td>
+<td>BT1004</td>
+<td>10 year</td>
 <td>\$100,000</td>
 <td>\$14.25</td>
 </tr>
@@ -520,17 +518,17 @@ curl -X POST <span class="se">\</span>
 <p>Note the below instructions for how to link your customer to then complete the life insurance application at bestow.com will vary depending on whether your partnership is structured as an “affiliate” or “licensed agent” relationship. If you are unclear on your partnership structure, please reach out to your Business Development point of contact. </p>
 <h3 id='instructions-for-partnerships-of-bestow-structured-as-an-agent'>Instructions for partnerships of Bestow structured as an “agent”</h3>
 <blockquote>
-<p>As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format:</p>
+<p>As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format (the [agentkey] after the forward slash is a unique key given to you by the Bestow team):</p>
 
-<p><code>https://bestow.com/agents/[agentname]</code></p>
+<p><code>https://agent-quote.bestow.com/[agentkey]</code></p>
 </blockquote>
 
-<p>When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format <code>bestow.com/agents/[agentname]</code> and passes in the various query parameters listed below. If you have not yet been provided these query parameters, then contact your Bestow Business Development manager directly or the Agent Operations team at <code>agents@bestow.com</code>.</p>
+<p>When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format <code>agent-quote.bestow.com/[agentkey]</code> and passes in the various query parameters listed below. If you have not yet been provided your [agentkey], then contact your Bestow Business Development manager directly or the Agent Operations team at <code>agents@bestow.com</code>.</p>
 
 <blockquote>
 <p>Example Redirect Including Query Parameters:</p>
 
-<p><code>https://bestow.com/agents/BestAgent?bestow_writing_agent=12345678&amp;hier=hier1_hier2&amp;ev_hier=Evhier&amp;prod=t&amp;utm_source=Source&amp;utm_medium=agents&amp;date_of_birth=1980-01-01&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;product=BT2003&amp;coverage=700000&amp;skipform=true</code></p>
+<p><code>https://agent-quote.bestow.com/[agentkey]?date_of_birth=1980-01-01&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;tobacco=no&amp;product=BT2004&amp;coverage=700000&amp;skipform=true</code></p>
 </blockquote>
 
 <table><thead>
@@ -543,7 +541,7 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>product</td>
 <td>true</td>
-<td>The product type (either &quot;BT1003&quot; or &quot;BT2003&quot;). See full description above.</td>
+<td>The product type (e.g. &quot;BT1004&quot;). See full description above.</td>
 </tr>
 <tr>
 <td>coverage</td>
@@ -577,7 +575,7 @@ curl -X POST <span class="se">\</span>
 </tr>
 <tr>
 <td>tobacco</td>
-<td>false</td>
+<td>true</td>
 <td>&quot;yes&quot; or &quot;no&quot;</td>
 </tr>
 <tr>
@@ -586,44 +584,9 @@ curl -X POST <span class="se">\</span>
 <td>Use the value “true”</td>
 </tr>
 <tr>
-<td>bestow_writing_agent</td>
-<td>true</td>
-<td>Custom string in the format “######” provided to you by Bestow for proper agent commission tracking</td>
-</tr>
-<tr>
-<td>hier</td>
-<td>true</td>
-<td>Custom string provided to you by Bestow for proper agent commission tracking</td>
-</tr>
-<tr>
-<td>ev_hier</td>
-<td>true</td>
-<td>Custom string provided to you by Bestow for proper agent commission tracking</td>
-</tr>
-<tr>
-<td>prod</td>
-<td>true</td>
-<td>&quot;t&quot; or &quot;f&quot;, provided to you by Bestow for proper agent commission tracking</td>
-</tr>
-<tr>
-<td>utm_source</td>
-<td>true</td>
-<td>Custom string provided to you by Bestow for proper agent commission tracking</td>
-</tr>
-<tr>
-<td>utm_medium</td>
-<td>true</td>
-<td>Use the value &quot;agents&quot;</td>
-</tr>
-<tr>
-<td>utm_content</td>
+<td>partner_user_id</td>
 <td>false</td>
-<td>Optionally provided to you by Bestow</td>
-</tr>
-<tr>
-<td>utm_term</td>
-<td>false</td>
-<td>Optionally provided to you by Bestow</td>
+<td>Optionally provided by you to Bestow</td>
 </tr>
 </tbody></table>
 <h3 id='instructions-for-partnerships-of-bestow-structured-as-an-affiliate-non-licensed-agent-established-through-impact-radius'>Instructions for partnerships of Bestow structured as an “affiliate” (non-licensed agent) established through Impact Radius</h3>
@@ -803,6 +766,11 @@ You can additionally pass in optional query params so that the enrollment applic
 <td>utm_term</td>
 <td>false</td>
 <td>Potentially provided to you by Bestow for proper affiliate tracking.</td>
+</tr>
+<tr>
+<td>partner_user_id</td>
+<td>false</td>
+<td>Potentially provided by you to Bestow for proper customer tracking.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
