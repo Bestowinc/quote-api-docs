@@ -129,12 +129,10 @@ curl -X POST \
 
 ### HTTP Request
 
-`POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true`
-
-*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally set this parameter to false if you have not yet integrated the new product codes into your code. You can also choose to leave the "enable_2019_plus" parameter out, which will return the same values as if it were set to false.
+`POST https://api.hellobestow.com/v2/quote`
 
 
-### Query Parameters
+### `POST` Body Parameters
 
 | Parameter       | Required | Description                                                             |
 | --------------- | -------- | ----------------------------------------------------------------------- |
