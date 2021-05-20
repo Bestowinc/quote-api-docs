@@ -132,7 +132,7 @@ curl -X POST \
 `POST https://api.hellobestow.com/v2/quote`
 
 
-### Query Parameters
+### `POST` Body Parameters
 
 | Parameter       | Required | Description                                                             |
 | --------------- | -------- | ----------------------------------------------------------------------- |
