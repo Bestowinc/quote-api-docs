@@ -32,16 +32,13 @@ curl -X POST \
 
 > Make sure to replace `82zZIHeBqUlBtICMX5li` with your API key.
 
-The first option is to use an API key. Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:
+The first and preferred option is to use an API key. Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: 82zZIHeBqUlBtICMX5li`
 
 <aside class="notice">
 You must replace <code>82zZIHeBqUlBtICMX5li</code> with your personal API key.
 </aside>
-
-## Using Partner_Referral in POST Body 
-Alternatively, you can skip the Authentication Header by instead adding your `partner_referral` parameter in the JSON within the POST body. Your unique `partner_referral` name must similarly be provided to you by Bestow.
 
 # Quote
 
@@ -61,7 +58,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -d '{
-	"partner_referral": "partnername",
+	"partner_referral": "qapi_partner",
   "birth_date": "1980-01-01",
 	"gender": "male",
 	"height_feet": 6,
@@ -136,7 +133,7 @@ curl -X POST \
 
 | Parameter       | Required | Description                                                             |
 | --------------- | -------- | ----------------------------------------------------------------------- |
-| partner_referral| false    | “PartnerName” provided by Bestow if not authenticating with an API key  |
+| partner_referral| false    | “qapi_partner” static value used internally at Bestow                   |
 | birth_date      | true     | Birth date in format YYYY-MM-DD                                         |
 | gender          | true     | "male" or "female"                                                      |
 | height_feet     | true     | Feet part of height                                                     |
@@ -191,15 +188,15 @@ Note the below instructions for how to link your customer to then complete the l
 
 ### Instructions for partnerships of Bestow structured as an “agent”
 
-> As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format (the [agentkey] after the forward slash is a unique key given to you by the Bestow team):
+> As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format (the [referral_id] after the forward slash is a unique key given to you by the Bestow team):
 
-> `https://agent-quote.bestow.com/[agentkey]`
+> `https://agent-quote.bestow.com/[referral_id]`
 
 When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format `agent-quote.bestow.com/[agentkey]` and passes in the various query parameters listed below. If you have not yet been provided your [agentkey], then contact your Bestow Business Development manager directly or the Agent Operations team at `agents@bestow.com`.
 
 > Example Redirect Including Query Parameters:
 
-> `https://agent-quote.bestow.com/[agentkey]?date_of_birth=1980-01-01&gender=male&height=72&weight=180&state=TN&tobacco=no&product=BT2004&coverage=700000&skipform=true`
+> `https://agent-quote.bestow.com/[referral_id]?date_of_birth=1980-01-01&gender=male&height=72&weight=180&state=TN&tobacco=no&product=BT2004&coverage=700000&skipform=true`
 
 | Parameter            | Required | Description                                               |
 | -------------------- | -------- | ----------------------------------------------------------|
@@ -228,7 +225,7 @@ When you send customers to enroll in life insurance with Bestow, redirect them t
 
 | Parameter            | Required | Description                                               |
 | -------------------- | -------- | ----------------------------------------------------------|
-| p.product            | true     | The product type (either "BT1003" or "BT2003"). See full description above.|
+| p.product            | true     | The product type (either "BT1004" or "BT2004"). See full description above.|
 | p.coverage           | true     | The integer face value of the life insurance policy in USD|
 | p.date_of_birth      | true     | Birth date in format YYYY-MM-DD                           |
 | p.gender             | true     | "male" or "female"                                        | 
