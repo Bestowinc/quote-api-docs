@@ -10,9 +10,11 @@ toc_footers:
 search: true
 ---
 
-# Introduction
+<br/>
+:warning: **This API version is deprecated and should not be used. Please reach out to your Bestow Partner Rep to learn about our new Quote API solution.**
 
-## This API version is deprecated and should not be used. Please reach out to your Bestow Partner Rep to learn about our new Quote API solution. 
+# Introduction
+ 
 
 Welcome to the Bestow Quote API. Users of the API can get price quotes for Bestow life insurance products by passing in a few customer parameters.
 
