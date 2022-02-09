@@ -11,8 +11,7 @@ search: true
 ---
 
 <br/>
-:warning: 
-**This API version is deprecated and should not be used. Please reach out to your Bestow Partner Rep to learn about our new Quote API solution.
+:warning: <strong>This API version is deprecated and should not be used. Please reach out to your Bestow Partner Rep to learn about our new Quote API solution.</strong>
 
 # Introduction
  
