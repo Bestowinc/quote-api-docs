@@ -227,9 +227,6 @@
                   <li>
                     <a href="#api-keys" class="toc-h2 toc-link" data-title="API Keys">API Keys</a>
                   </li>
-                  <li>
-                    <a href="#using-partner_referral-in-post-body" class="toc-h2 toc-link" data-title="Using Partner_Referral in POST Body">Using Partner_Referral in POST Body</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -254,7 +251,9 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
+        <p><br/>
+:warning: <strong>This API version is deprecated and should not be used. Please reach out to your Bestow Partner Rep to learn about our new Quote API solution.</strong></p>
+<h1 id='introduction'>Introduction</h1>
 <p>Welcome to the Bestow Quote API. Users of the API can get price quotes for Bestow life insurance products by passing in a few customer parameters.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>There are two methods for authentication. Both methods require working with your Business Development point of contact to receive your authentication key/secret. </p>
@@ -272,15 +271,13 @@ curl -X POST <span class="se">\</span>
 <p>Make sure to replace <code>82zZIHeBqUlBtICMX5li</code> with your API key.</p>
 </blockquote>
 
-<p>The first option is to use an API key. Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>The first and preferred option is to use an API key. Bestow expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
 <p><code>Authorization: 82zZIHeBqUlBtICMX5li</code></p>
 
 <aside class="notice">
 You must replace <code>82zZIHeBqUlBtICMX5li</code> with your personal API key.
 </aside>
-<h2 id='using-partner_referral-in-post-body'>Using Partner_Referral in POST Body</h2>
-<p>Alternatively, you can skip the Authentication Header by instead adding your <code>partner_referral</code> parameter in the JSON within the POST body. Your unique <code>partner_referral</code> name must similarly be provided to you by Bestow.</p>
 <h1 id='quote'>Quote</h1><h2 id='creating-a-quote'>Creating a Quote</h2>
 <p>Every insurance policy begins with a quote. You can think of quotes as templates that eventually turn into policies if a user decides to buy. Quotes are used to indicate the terms of the policy and the price (premium) associated with it.</p>
 
@@ -296,7 +293,7 @@ curl -X POST <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
   -d <span class="s1">'{
-    "partner_referral": "partnername",
+    "partner_referral": "qapi_partner",
   "birth_date": "1980-01-01",
     "gender": "male",
     "height_feet": 6,
@@ -360,10 +357,8 @@ curl -X POST <span class="se">\</span>
   </span><span class="s2">"quote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3b4d9e4-567d-4d77-95da-4761b7985320"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.hellobestow.com/v2/quote?enable_2019_plus=true</code></p>
-
-<p>*Note: We are temporarily using an additional parameter - enable_2019_plus - which enables the newest version of our application. You can optionally set this parameter to false if you have not yet integrated the new product codes into your code. You can also choose to leave the &quot;enable_2019_plus&quot; parameter out, which will return the same values as if it were set to false.</p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>POST https://api.hellobestow.com/v2/quote</code></p>
+<h3 id='post-body-parameters'><code>POST</code> Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -374,7 +369,7 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>partner_referral</td>
 <td>false</td>
-<td>“PartnerName” provided by Bestow if not authenticating with an API key</td>
+<td>“qapi_partner” static value used internally at Bestow</td>
 </tr>
 <tr>
 <td>birth_date</td>
@@ -518,9 +513,9 @@ curl -X POST <span class="se">\</span>
 <p>Note the below instructions for how to link your customer to then complete the life insurance application at bestow.com will vary depending on whether your partnership is structured as an “affiliate” or “licensed agent” relationship. If you are unclear on your partnership structure, please reach out to your Business Development point of contact. </p>
 <h3 id='instructions-for-partnerships-of-bestow-structured-as-an-agent'>Instructions for partnerships of Bestow structured as an “agent”</h3>
 <blockquote>
-<p>As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format (the [agentkey] after the forward slash is a unique key given to you by the Bestow team):</p>
+<p>As an Agent partner, to enroll from a quote, redirect to your unique URL typically in the format (the [referral_id] after the forward slash is a unique key given to you by the Bestow team):</p>
 
-<p><code>https://agent-quote.bestow.com/[agentkey]</code></p>
+<p><code>https://agent-quote.bestow.com/[referral_id]</code></p>
 </blockquote>
 
 <p>When you send customers to enroll in life insurance with Bestow, redirect them to your unique Bestow-provided agent co-branded landing page. This landing page URL is in the format <code>agent-quote.bestow.com/[agentkey]</code> and passes in the various query parameters listed below. If you have not yet been provided your [agentkey], then contact your Bestow Business Development manager directly or the Agent Operations team at <code>agents@bestow.com</code>.</p>
@@ -528,7 +523,7 @@ curl -X POST <span class="se">\</span>
 <blockquote>
 <p>Example Redirect Including Query Parameters:</p>
 
-<p><code>https://agent-quote.bestow.com/[agentkey]?date_of_birth=1980-01-01&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;tobacco=no&amp;product=BT2004&amp;coverage=700000&amp;skipform=true</code></p>
+<p><code>https://agent-quote.bestow.com/[referral_id]?date_of_birth=1980-01-01&amp;gender=male&amp;height=72&amp;weight=180&amp;state=TN&amp;tobacco=no&amp;product=BT2004&amp;coverage=700000&amp;skipform=true</code></p>
 </blockquote>
 
 <table><thead>
@@ -614,7 +609,7 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>p.product</td>
 <td>true</td>
-<td>The product type (either &quot;BT1003&quot; or &quot;BT2003&quot;). See full description above.</td>
+<td>The product type (either &quot;BT1004&quot; or &quot;BT2004&quot;). See full description above.</td>
 </tr>
 <tr>
 <td>p.coverage</td>
